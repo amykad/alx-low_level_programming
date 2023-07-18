@@ -10,45 +10,6 @@
 
 int main(void)
 {
-	int i;
-	unsigned long int j, k, next, sum;
-
-	j = 1;
-	k = 2;
-	sum = 0;
-
-	for (i = 1; i <= 33; ++i)
-	{
-		if (j < 4000000 && (j % 2) == 0)
-		{
-			sum = sum + j;
-		}
-		next = j + k;
-		j = k;
-		k = next;
-	}
-
-	printf("%lu\n", sum);
-
-	return (0);
-}
-
-
-104-fibonacci.c
-
-#include <stdio.h>
-
-/**
- * main - fibonacci <3
- *
- * Purpose - no hardcode
- *
- * Return:  (Success)
- */
-
-int main(void)
-
-{
 	unsigned long int i;
 	unsigned long int bef = 1;
 	unsigned long int aft = 2;
@@ -62,7 +23,7 @@ int main(void)
 
 	for (i = 1; i < 91; i++)
 	{
-		printf(",%lu", aft);
+		printf(", %lu", aft);
 		aft += bef;
 		bef = aft - bef;
 	}
@@ -74,7 +35,7 @@ int main(void)
 
 	for (i = 92; i < 99; ++i)
 	{
-		printf(",%lu", aft1 + (aft2 / l));
+		printf(", %lu", aft1 + (aft2 / l));
 		printf("%lu", aft2 % l);
 		aft1 = aft1 + bef1;
 		bef1 = aft1 - bef1;
