@@ -1,31 +1,48 @@
+#include "main.h"
 #include <stdlib.h>
-#include <string.h>
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
-void *new_ptr;
-
-if (new_size == 0 && ptr != NULL){
-free(ptr);
-return NULL;
-}
-
-if (ptr == NULL){
-new_ptr = malloc(new_size);
-return new_ptr;
-}
-
-new_ptr = malloc(new_size);
-
-if (new_ptr == NULL){
-return NULL;
-}
-
+/**
+* _realloc - reallocates a memory block
+* @ptr: pointer to the memory previously allocated with a call to malloc
+* @old_size: size of ptr
+* @new_size: size of the new memory to be allocated
+*
+* Return: pointer to the address of the new memory block
+*/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-size_t copy_size = (old_size < new_size) ? old_size : new_size;
-memcpy(new_ptr, ptr, copy_size);
-}
+void *temp_block;
+unsigned int i;
+unsigned int copy_size = (old_size < new_size) ? old_size : new_size;
 
+if (ptr == NULL)
+{
+temp_block = malloc(new_size);
+return (temp_block);
+}
+else if (new_size == old_size)
+{
+return (ptr);
+}
+else if (new_size == 0 && ptr != NULL)
+{
 free(ptr);
-
-return new_ptr;
+return (NULL);
 }
+else
+{
+temp_block = malloc(new_size);
+if (temp_block != NULL)
+{
+for (i = 0; i < copy_size; i++)
+{
+((char *)temp_block)[i] = ((char *)ptr)[i];
+}
+free(ptr);
+return (temp_block);
+}
+}
+
+return (NULL);
+}
+
